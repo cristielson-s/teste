@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAPC</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #222;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            line-height: 60px;
+            z-index: 1;
+            transition: opacity 0.5s;
+        }
+
+        .navbar.hidden {
+            opacity: 0;
+        }
+
+        #background {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 60px);
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        #car-container {
+            position: relative;
+            margin-top: 90px;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            height: auto;
+        }
+
+        .car-image {
+            width: 100%;
+            max-height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .image-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+
+        .image-button {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+
+        .image-button:focus {
+            outline: none;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        RAPC
+    </nav>
+    <div id="background"></div>
+    <div id="car-container">
+        <img class="car-image" src="https://images3.alphacoders.com/133/1332803.png" alt="Image 1">
+        <img class="car-image" src="https://images3.alphacoders.com/845/84527.jpg" alt="Image 2">
+        <img class="car-image" src="https://images4.alphacoders.com/979/97934.jpg" alt="Image 3">
+        <img class="car-image" src="https://images2.alphacoders.com/105/105360.jpg" alt="Image 4">
+        <img class="car-image" src="https://images3.alphacoders.com/140/14065.png" alt="Image 5">
+        <img class="car-image" src="https://images4.alphacoders.com/451/45196.jpg" alt="Image 6">
+        <img class="car-image" src="https://images2.alphacoders.com/764/76450.jpg" alt="Image 7">
+        <img class="car-image" src="https://images4.alphacoders.com/848/84834.jpg" alt="Image 8">
+        <img class="car-image" src="https://images4.alphacoders.com/962/96214.jpg" alt="Image 9">
+        <img class="car-image" src="https://images2.alphacoders.com/832/83250.jpg" alt="Image 10">
+    </div>
+    <div class="image-links">
+        <button class="image-button" onclick="showImage(1)">1</button>
+        <button class="image-button" onclick="showImage(2)">2</button>
+        <button class="image-button" onclick="showImage(3)">3</button>
+        <button class="image-button" onclick="showImage(4)">4</button>
+        <button class="image-button" onclick="showImage(5)">5</button>
+        <button class="image-button" onclick="showImage(6)">6</button>
+        <button class="image-button" onclick="showImage(7)">7</button>
+        <button class="image-button" onclick="showImage(8)">8</button>
+        <button class="image-button" onclick="showImage(9)">9</button>
+        <button class="image-button" onclick="showImage(10)">10</button>
+    </div>
+    <div class="footer">
+        <p>Information about RAPC</p>
+    </div>
+    <script>
+        const carImages = document.querySelectorAll(".car-image");
+        let currentImageIndex = 0;
+
+        function showImage(index) {
+            carImages.forEach((image, i) => {
+                if (i === index - 1) {
+                    image.style.opacity = 1;
+                } else {
+                    image.style.opacity = 0;
+                }
+            });
+        }
+
+        function changeImage() {
+            carImages[currentImageIndex].style.opacity = 0;
+            currentImageIndex = (currentImageIndex + 1) % carImages.length;
+            carImages[currentImageIndex].style.opacity = 1;
+        }
+
+        // Hide all images initially
+        carImages.forEach((image) => {
+            image.style.opacity = 0;
+        });
+
+        // Show the first image by default
+        carImages[0].style.opacity = 1;
+
+        setInterval(changeImage, 2000); // Automatically switch images every 2 seconds
+    </script>
+</body>
+</html>
